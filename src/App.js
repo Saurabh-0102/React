@@ -1,4 +1,6 @@
 export default function app() {
+
+   let list = [1,1,1,1,1,1,1,1,1]; 
   return (
     <div>
       <div>
@@ -13,14 +15,16 @@ export default function app() {
           TweetBook
         </h1>
       </div>
-      <p className="alert alert-info p-2 mt-1">
-        Hello this is a demo of a paragraphHello this is a demo of a
-        paragraphHello this is a demo of a paragraphHello this is a demo of a
-        paragraph Hello this is a demo of a paragraphHello this is a demo of a
-        paragraphHello this is a demo of a paragraphHello this is a demo of a
-        paragraphHello this is a demo of a paragraphHello this is a demo of a
-        paragraph
-      </p>
+      {list.map( () => {
+           return <p className="alert alert-info p-2 mt-1">
+           Hello this is a demo of a paragraphHello this is a demo of a
+           paragraphHello this is a demo of a paragraphHello this is a demo of a
+           paragraph Hello this is a demo of a paragraphHello this is a demo of a
+           paragraphHello this is a demo of a paragraphHello this is a demo of a
+           paragraphHello this is a demo of a paragraphHello this is a demo of a
+           paragraph
+         </p>
+      })}
     </div>
   );
 }

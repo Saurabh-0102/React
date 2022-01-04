@@ -9,24 +9,23 @@ export default function App() {
 }
 
 function MyComponent() {
+  const [cardcss, setcss] = useState("bg-danger");
  
-    let [message,setmessage] = useState("hello");
+  const primary = () => setcss("bg-primary");
+  const dark = () => setcss("bg-dark text-white");
+  const normal = () => setcss("bg-white");
+  const list = [1, 1, 1, 1, 1, 1, 1];
 
-    const changemessage = (e) => {
-
-        setmessage(e.target.value); 
-
-    }
-
-    return(
-        <div>
-            <input type="text" value={message} onChange={changemessage} />
-            {/* <input type="button" value={post} /> */}
-            <div>{message}</div>
-            <div>{message}</div>
-            <div>{message}</div>
-            <div>{message}</div>
-            <div>{message }</div>
-        </div>
-    )
+  return (
+    <div>
+      <input type="button" value="Primary" onClick={primary} />
+      <input type="button" value="dark" onClick={dark} />
+      <input type="button" value="normal" onClick={normal}/> 
+      <h1 className={cardcss}>Hello</h1>
+      <h1 className={cardcss}>Hello</h1>
+      <h1 className={cardcss}>Hello</h1>
+      <h1 className={cardcss}>Hello</h1>
+      <h1 className={cardcss}>Hello</h1>
+    </div>
+  );
 }

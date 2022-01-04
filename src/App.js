@@ -9,35 +9,69 @@ export default function App() {
 }
 
 function MyComponent() {
+  const [email, setemail] = useState("");
+  const [password, setPassword] = useState("");
+  const [number, setnumber] = useState("");
 
-  let [mess, setmess] = useState("type here");  
+  const [userlist, setuser] = useState([]);
 
-  let [list,setlist] = useState([]);
+  const proemail = (e) => {
+    setemail(e.target.value);
+  };
 
-    const tweet =  () => {
-        let newlist= [...list, mess];
-        setlist(newlist);
-        setmess("");
-    }
-    
-    const newmess = (e) => {
-        let newval = e.target.value;
-        setmess(newval);
-    }
+  const propass = (e) => {
+    setPassword(e.target.value);
+  };
 
-    const deletetweet = () => {
-        list.splice(0,1);
-        const newlist = [...list]
-        setlist(newlist);
-    }
+  const pronum = (e) => {
+    setnumber(e.target.value);
+  };
+
+  const register = () => {
+    const user = {
+      email: email,
+      password: password,
+      number: number,
+    };
+    const newuser = [user, ...userlist];
+    setuser(newuser);
+  };
 
   return (
     <div>
-      <input type="text" value={mess} onChange={newmess} />
-      <input type="button" value="click me" onClick={tweet} />
-      <input type="button" value="delete" onClick={deletetweet}/> 
-      {list.map((item) => (
-        <div>{item}</div>
+      <div>
+        <input
+          type="text"
+          value={email}
+          placeholder="Enter Email"
+          onChange={proemail}
+        />
+      </div>
+      <div>
+        <input
+          type="text"
+          value={password}
+          placeholder="Enter Password"
+          onClick={propass}
+        />
+      </div>
+      <div>
+        <input
+          type="text"
+          value={number}
+          placeholder="Enter Mobile Number"
+          onClick={pronum}
+        />
+      </div>
+      <div>
+        <input type="button" value="Submit" onClick={register} />
+      </div>
+
+      {userlist.map((item) => (
+        <div>
+          {" "}
+          {item.email}, {item.password}, {item.number}{" "}
+        </div>
       ))}
     </div>
   );

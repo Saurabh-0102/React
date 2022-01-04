@@ -9,22 +9,24 @@ export default function App() {
 }
 
 function MyComponent() {
-  let [counter, setcounter] = useState(0);
+ 
+    let [message,setmessage] = useState("hello");
 
-  const increment = () => {
-      counter = counter + 1;
+    const changemessage = (e) => {
 
-      setcounter(counter);
-  };
+        setmessage(e.target.value); 
 
-  return (
-    <div>
-      <h4>Hello</h4>
-      <input type="text" value="Type here" />
-      <input type="button" value="Chick Me" onClick={increment} />
-      <div>
-          Like {counter}
-      </div>
-    </div>
-  );
+    }
+
+    return(
+        <div>
+            <input type="text" value={message} onChange={changemessage} />
+            {/* <input type="button" value={post} /> */}
+            <div>{message}</div>
+            <div>{message}</div>
+            <div>{message}</div>
+            <div>{message}</div>
+            <div>{message }</div>
+        </div>
+    )
 }

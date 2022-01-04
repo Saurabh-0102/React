@@ -9,23 +9,36 @@ export default function App() {
 }
 
 function MyComponent() {
-  const [cardcss, setcss] = useState("bg-danger");
- 
-  const primary = () => setcss("bg-primary");
-  const dark = () => setcss("bg-dark text-white");
-  const normal = () => setcss("bg-white");
-  const list = [1, 1, 1, 1, 1, 1, 1];
+
+  let [mess, setmess] = useState("type here");  
+
+  let [list,setlist] = useState([]);
+
+    const tweet =  () => {
+        let newlist= [...list, mess];
+        setlist(newlist);
+        setmess("");
+    }
+    
+    const newmess = (e) => {
+        let newval = e.target.value;
+        setmess(newval);
+    }
+
+    const deletetweet = () => {
+        list.splice(0,1);
+        const newlist = [...list]
+        setlist(newlist);
+    }
 
   return (
     <div>
-      <input type="button" value="Primary" onClick={primary} />
-      <input type="button" value="dark" onClick={dark} />
-      <input type="button" value="normal" onClick={normal}/> 
-      <h1 className={cardcss}>Hello</h1>
-      <h1 className={cardcss}>Hello</h1>
-      <h1 className={cardcss}>Hello</h1>
-      <h1 className={cardcss}>Hello</h1>
-      <h1 className={cardcss}>Hello</h1>
+      <input type="text" value={mess} onChange={newmess} />
+      <input type="button" value="click me" onClick={tweet} />
+      <input type="button" value="delete" onClick={deletetweet}/> 
+      {list.map((item) => (
+        <div>{item}</div>
+      ))}
     </div>
   );
 }

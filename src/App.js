@@ -9,18 +9,21 @@ export default function App() {
 }
 
 function MyComponent() {
+  const [validate,setvalidate] = useState(false);
   const [email, setemail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setpassword] = useState("");
   const [number, setnumber] = useState("");
 
   const [userlist, setuser] = useState([]);
+
+
 
   const proemail = (e) => {
     setemail(e.target.value);
   };
 
   const propass = (e) => {
-    setPassword(e.target.value);
+    setpassword(e.target.value);
   };
 
   const pronum = (e) => {
@@ -28,6 +31,12 @@ function MyComponent() {
   };
 
   const register = () => {
+    
+  if(email == ""|| password == "" || number == "" ){
+    setvalidate(true);
+    return;
+  }
+
     const user = {
       email: email,
       password: password,
@@ -35,6 +44,11 @@ function MyComponent() {
     };
     const newuser = [user, ...userlist];
     setuser(newuser);
+    setemail("");
+    setpassword("");
+    setnumber("");
+
+    setvalidate(false);
   };
 
   return (
@@ -42,25 +56,30 @@ function MyComponent() {
       <div>
         <input
           type="text"
-          value={email}
           placeholder="Enter Email"
+          value={email}
           onChange={proemail}
+          className={ email == "" && validate  ? "border border-danger" : ""}
         />
       </div>
       <div>
         <input
           type="text"
-          value={password}
           placeholder="Enter Password"
-          onClick={propass}
+          value={password}
+          onChange={propass}
+          className={ email == "" && validate  ? "border border-danger" : ""}
+
         />
       </div>
       <div>
         <input
           type="text"
-          value={number}
           placeholder="Enter Mobile Number"
-          onClick={pronum}
+          value={number}
+          onChange={pronum}
+          className={ email == "" && validate  ? "border border-danger" : ""}
+
         />
       </div>
       <div>
@@ -69,7 +88,6 @@ function MyComponent() {
 
       {userlist.map((item) => (
         <div>
-          {" "}
           {item.email}, {item.password}, {item.number}{" "}
         </div>
       ))}
